@@ -1,4 +1,4 @@
-package model;
+package model.cursos;
 
 public class Profesor extends Persona {
 	public boolean evalua(Alumno alumno,int evaluacion,float nota) {

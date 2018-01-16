@@ -1,4 +1,4 @@
-package model;
+package model.cursos;
 
 import java.util.Calendar;
 
