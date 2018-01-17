@@ -14,4 +14,6 @@ public interface ICurso {
 	public void setAsistencia(Asistencia asistencia);
 	
 	public void setEvaluacion(InfoEvaluacion ev);
+	
+	public boolean borrarAlumno(String nif);
 }
