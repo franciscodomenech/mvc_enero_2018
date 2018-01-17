@@ -13,7 +13,7 @@ public class Consola {
 	
 	public void printQuestion(String text) {
 		System.out.println(text);
-	    String response = sc.next();
+	    String response = sc.nextLine();
 	    if(listener!=null)
 	    	listener.onResponse(response);
 	}

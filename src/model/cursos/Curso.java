@@ -63,5 +63,14 @@ public class Curso implements ICurso {
 		if(profesor!=null)
 			profesor.evalua(buscarAlumno(ev.getNif()), ev.getEvaluacion(), ev.getNota());
 	}
+	
+	public boolean borrarAlumnos(String nif) {
+		if(alumnos.containsKey(nif)) {
+			alumnos.remove(nif);
+			return true;
+		}
+		else
+			return false;
+	}
 
 }

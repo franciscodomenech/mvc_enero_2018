@@ -16,6 +16,7 @@ public class Centro implements ICentro {
 	public static final int OP_MARCAR_ASISTENCIA = 2;
 	public static final int OP_EVALUAR = 3;
 	public static final int OP_MOSTRAR_ALUMNO = 4;
+	public static final int OP_DELETE_ALUMNO = 5;
 	
 	private MainQuestions questions;
 	
@@ -72,6 +73,22 @@ public class Centro implements ICentro {
 				else
 					r = "No existe";
 				break;
+			case OP_DELETE_ALUMNO:
+					if(sr.getResult()!=null) {
+						if(curso.borrarAlumnos((String) sr.getResult())) {
+							curso.borrarAlumnos((String) sr.getResult());
+							r="Alumno eliminado";
+						}
+						else {
+							r="El alumno no se encuentra en la base de datos";
+						}
+							
+					}
+					else {
+						r = "Operación cancelada";
+					}
+				break;
+			
 			}
 		}
 		return r;
