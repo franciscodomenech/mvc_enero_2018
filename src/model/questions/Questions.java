@@ -10,6 +10,7 @@ public abstract class Questions implements IQuestions {
 
 	public Questions() {
 		questionsText = new ArrayList<String>();
+		init();
 	}
 	
 	@Override
