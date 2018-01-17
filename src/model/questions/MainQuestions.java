@@ -31,6 +31,7 @@ public class MainQuestions {
 			q = getQuestionOp();
 			break;
 		default:
+			setQuestionsForOp(actualOp);
 			if(actualQD!=null)
 				q = actualQD.getQuestion(actual-STARTQD);
 			break;
@@ -67,7 +68,7 @@ public class MainQuestions {
 	}
 
 	private String getQuestionOp() {
-		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_ADD_ALUMNO+":Asistencia, "+Centro.OP_ADD_ALUMNO+":Evaluar, "+Centro.OP_ADD_ALUMNO+":Buscar )";
+		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar )";
 	}
 	
 	public int getStatus() {

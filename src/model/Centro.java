@@ -41,12 +41,12 @@ public class Centro implements ICentro {
 	@Override
 	public String processResponse(String response) {
 		String r = null;
-		if(questions.getStatus()>MainQuestions.SECOND_STEP) {
+		//if(questions.getStatus()>MainQuestions.SECOND_STEP) {
 			StatusResponse sr = questions.processResponse(response);
-			if(sr.isFinish() && sr.isIsok()) {
+			if(sr.isFinish() && sr.isIsok() && questions.getStatus()>MainQuestions.SECOND_STEP) {
 				r = checkStResponse(sr);
 			}
-		}
+		//}
 		return r;
 	}
 	
