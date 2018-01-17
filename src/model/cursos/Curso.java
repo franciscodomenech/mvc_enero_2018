@@ -51,4 +51,17 @@ public class Curso implements ICurso {
 		profesor = profe;
 	}
 
+	@Override
+	public void setAsistencia(Asistencia asistencia) {
+		Alumno al = buscarAlumno(asistencia.getNif());
+		if(al!=null)
+			al.setAsistencia(asistencia.isAsistencia());
+	}
+
+	@Override
+	public void setEvaluacion(InfoEvaluacion ev) {
+		if(profesor!=null)
+			profesor.evalua(buscarAlumno(ev.getNif()), ev.getEvaluacion(), ev.getNota());
+	}
+
 }

@@ -10,4 +10,8 @@ public interface ICurso {
 	public Alumno buscarAlumno(String nif);
 	
 	public void setProfesor(Profesor profe);
+	
+	public void setAsistencia(Asistencia asistencia);
+	
+	public void setEvaluacion(InfoEvaluacion ev);
 }

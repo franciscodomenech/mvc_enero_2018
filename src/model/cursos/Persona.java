@@ -72,5 +72,17 @@ public class Persona {
 		int edad = fechaActual.get(Calendar.YEAR)-yearCero.get(Calendar.YEAR);*/
 		return edad;
 	}
+	
+	public boolean setDateString(String value) {
+		boolean isok = false;
+		String[] tks = value.split("/");
+		if(tks.length>2) {
+			try {
+				fecha.set(Integer.parseInt(tks[2]), Integer.parseInt(tks[1])-1, Integer.parseInt(tks[0]));
+				isok = true;
+			}catch(NumberFormatException nfe) {}
+		}
+		return isok;
+	}
 
 }
