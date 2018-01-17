@@ -22,7 +22,10 @@ public class Centro implements ICentro {
 	
 	private Curso[] cursos;
 	
+	private boolean logged;
+	
 	public Centro() {
+		logged = true;
 		cursos = new Curso[NUM_CURSOS];
 		for(int i=0;i<cursos.length;i++) {
 			Curso c = new Curso();
@@ -45,6 +48,12 @@ public class Centro implements ICentro {
 		StatusResponse sr = questions.processResponse(response);
 		if(sr.isFinish() && sr.isIsok() && questions.getStatus()>MainQuestions.SECOND_STEP) {
 			r = checkStResponse(sr);
+		}else if(questions.getStatus()==MainQuestions.EXIT_STEP && ((Boolean)sr.getResult())) {
+			logged = false;
+			r = "Hasta pronto!!!!";
+		}else if(!sr.isIsok()) {
+			r = "Respuesta inesperada";
+			questions.reset();
 		}
 		return r;
 	}
@@ -55,6 +64,11 @@ public class Centro implements ICentro {
 		if(c>=0 && c<cursos.length)
 			r = cursos[c].processResponse(sr.getResult(), questions.getOp());
 		return r;
+	}
+
+	@Override
+	public boolean isLogged() {
+		return logged;
 	}
 	
 	
