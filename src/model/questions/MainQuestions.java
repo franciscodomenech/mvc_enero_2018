@@ -12,6 +12,8 @@ public class MainQuestions {
 	public static final int FIRST_STEP = STARTQ+1;
 	public static final int SECOND_STEP = STARTQ+2;
 	
+	private final int EXIT_STEP = STARTQ;
+	
 	private int actualCurso;
 	private int actualOp;
 	
@@ -30,6 +32,8 @@ public class MainQuestions {
 		case SECOND_STEP:
 			q = getQuestionOp();
 			break;
+		case EXIT_STEP:
+			q = getQuestionExit();
 		default:
 			setQuestionsForOp(actualOp);
 			if(actualQD!=null)
@@ -39,7 +43,7 @@ public class MainQuestions {
 		}
 		if(q==null) {
 			actualQD = null;
-			actual = STARTQ;
+			actual = STARTQ-1;
 			q = next();
 		}
 		return q;
@@ -65,6 +69,12 @@ public class MainQuestions {
 	private String getQuestionInitial() {
 		// TODO Auto-generated method stub
 		return "Elige Curso(0,"+Centro.NUM_CURSOS+"):";
+	}
+	
+	private String getQuestionExit() {
+		// TODO Auto-generated method stub
+		//return "Elige Curso(0,"+Centro.NUM_CURSOS+"):";
+		return "Desea Salir Sí/No";
 	}
 
 	private String getQuestionOp() {
@@ -96,6 +106,12 @@ public class MainQuestions {
 				sr.setIsok(true);
 			}catch(NumberFormatException nfe) {}
 			break;
+		case EXIT_STEP:
+			try {
+				sr.setFinish(true);
+				sr.setIsok(true);
+			}catch(NumberFormatException nfe) {}
+			break;			
 		default:
 			if(actualQD!=null)
 				sr = actualQD.processResponse(getInternalStatus(), response);
