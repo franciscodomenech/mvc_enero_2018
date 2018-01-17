@@ -46,6 +46,7 @@ public class MainQuestions {
 	}
 	
 	private void setQuestionsForOp(int op) {
+		if(this.getInternalStatus()==0) {
 		switch(op) {
 		case Centro.OP_ADD_ALUMNO:
 			actualQD = new QuestionsAddAlumno();
@@ -59,6 +60,7 @@ public class MainQuestions {
 		case Centro.OP_MOSTRAR_ALUMNO:
 			actualQD = new QuestionsBuscar();
 			break;
+		}
 		}
 	}
 
