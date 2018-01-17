@@ -61,7 +61,7 @@ public class MainQuestions {
 				actualQD = new QuestionsBuscar();
 				break;
 			case Centro.OP_DELETE_ALUMNO:
-				actualQD = new QuestionsDesmatricula();
+				actualQD = new QuestionsDelete();
 				break;
 			}
 		}
@@ -73,7 +73,8 @@ public class MainQuestions {
 	}
 
 	private String getQuestionOp() {
-		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_DELETE_ALUMNO+":Eliminar) ";
+
+		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_DELETE_ALUMNO+":Eliminar )";
 	}
 	
 	public int getStatus() {

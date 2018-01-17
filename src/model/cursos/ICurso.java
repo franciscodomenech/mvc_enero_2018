@@ -2,6 +2,8 @@ package model.cursos;
 
 import java.util.HashMap;
 
+import model.questions.StatusResponse;
+
 public interface ICurso {
 	public void matricula(Alumno alumno);
 	public void pasarLista(HashMap<String,Boolean> asistencia);
@@ -14,6 +16,9 @@ public interface ICurso {
 	public void setAsistencia(Asistencia asistencia);
 	
 	public void setEvaluacion(InfoEvaluacion ev);
+
+	public boolean borrarAlumno(String nif);
 	
-	public boolean borrarAlumnos(String nif);
+	public String processResponse(Object r,int op);
+
 }
