@@ -2,6 +2,9 @@ package model.cursos;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import model.questions.StatusResponse;
 
 public class Curso implements ICurso {
 	
@@ -64,4 +67,24 @@ public class Curso implements ICurso {
 			profesor.evalua(buscarAlumno(ev.getNif()), ev.getEvaluacion(), ev.getNota());
 	}
 
-}
+	@Override
+	public boolean borrarAlumno(String nif) { //funcion que borra el nif del objeto alumnos
+	
+		if(alumnos.containsKey(nif)) { //si existe ese nif
+     		alumnos.remove(nif); //borralo
+		 	System.out.println("Alumno borrado");
+		
+			return true;} //devuelve ok
+		else 
+			System.out.println("El alumno no se encuentra");
+			return false; //devuelve error
+		
+			
+		}
+		
+	}
+	
+	
+
+
+
