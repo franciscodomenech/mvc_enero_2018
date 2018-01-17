@@ -59,6 +59,7 @@ public class MainQuestions {
 				break;
 			case Centro.OP_MOSTRAR_ALUMNO:
 				actualQD = new QuestionsBuscar();
+				break;
 			case Centro.OP_BORRAR_ALUMNO:
 				actualQD = new QuestionsBorrar();
 				break;
@@ -72,9 +73,9 @@ public class MainQuestions {
 	}
 
 	private String getQuestionOp() {
-		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_BORRAR_ALUMNO+":Borrar )" ;
+		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "
+	+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_BORRAR_ALUMNO+":Borrar )" ;
 	}
-	//Hola mostri
 	
 	public int getStatus() {
 		return actual;
@@ -91,14 +92,20 @@ public class MainQuestions {
 			try {
 				this.actualCurso = Integer.parseInt(response);
 				sr.setResult(actualCurso);
-				sr.setIsok(true);
+				sr.setIsok(actualOp>0 && actualOp<=Centro.NUM_CURSOS);
+				if (actualOp<0 || actualOp>=Centro.NUM_CURSOS) {
+					resetOp();
+				}
 			}catch(NumberFormatException nfe) {}
 			break;
 		case SECOND_STEP:
 			try {
 				this.actualOp = Integer.parseInt(response);
 				sr.setResult(actualOp);
-				sr.setIsok(true);
+				sr.setIsok(actualOp>0 && actualOp<=Centro.OP_BORRAR_ALUMNO);
+				if (actualOp<0 || actualOp>=Centro.OP_BORRAR_ALUMNO) {
+					resetOp();
+				}
 			}catch(NumberFormatException nfe) {}
 			break;
 		default:
@@ -115,6 +122,10 @@ public class MainQuestions {
 	
 	public int getOp() {
 		return actualOp;
+	}
+	
+	public void resetOp() {
+		actual = 0;
 	}
 
 }

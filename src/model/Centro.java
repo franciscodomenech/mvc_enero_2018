@@ -46,7 +46,7 @@ public class Centro implements ICentro {
 			StatusResponse sr = questions.processResponse(response);
 			if(sr.isFinish() && sr.isIsok() && questions.getStatus()>MainQuestions.SECOND_STEP) {
 				r = checkStResponse(sr);
-			}
+			}else if (!sr.isIsok())  r= "La opción seleccionada es incorrecta";
 		//}
 		return r;
 	}
@@ -56,29 +56,42 @@ public class Centro implements ICentro {
 		int c = questions.getCurso();
 		if(c>=0 && c<cursos.length) {
 			Curso curso = cursos[c];
-			switch(questions.getOp()) {
-			case OP_ADD_ALUMNO:
-				curso.matricula((Alumno) sr.getResult());
-				break;
-			case OP_MARCAR_ASISTENCIA:
-				curso.setAsistencia((Asistencia) sr.getResult());
-				break;
-			case OP_EVALUAR:
-				curso.setEvaluacion((InfoEvaluacion) sr.getResult());
-				break;
-			case OP_MOSTRAR_ALUMNO:
-				Alumno al = curso.buscarAlumno((String) sr.getResult());
-				if(al!=null)
-					r = al.toString();
-				else
-					r = "No existe";
-				break;
-			case OP_BORRAR_ALUMNO:
-				Alumno alBorrar = curso.buscarAlumno((String)sr.getResult());
-				if (alBorrar != null)
-					curso.borrarAlumno((String)sr.getResult());
-				break;
-			}
+			r = applyResponse(curso,sr);
+		}
+		return r;
+	}
+	
+	private String applyResponse(Curso curso, StatusResponse sr) {
+		
+		String r = null;
+		switch(questions.getOp()) {
+		case OP_ADD_ALUMNO:
+			curso.matricula((Alumno) sr.getResult());
+			break;
+		case OP_MARCAR_ASISTENCIA:
+			curso.setAsistencia((Asistencia) sr.getResult());
+			break;
+		case OP_EVALUAR:
+			curso.setEvaluacion((InfoEvaluacion) sr.getResult());
+			break;
+		case OP_MOSTRAR_ALUMNO:
+			Alumno al = curso.buscarAlumno((String) sr.getResult());
+			if(al!=null)
+				r = al.toString();
+			else
+				r = "No existe";
+			break;
+		case OP_BORRAR_ALUMNO:
+			if (sr != null)
+				if(!curso.borrarAlumno((String)sr.getResult()))
+					r = "No se ha podido completar el borrado del alumno";
+				else r= "Alumno borrado con exito";
+			else r = "No se encuentra el alumno. ";
+			break;	
+		default: 
+			r = "Operación fuera de rango";
+			break;
+			
 		}
 		return r;
 	}
