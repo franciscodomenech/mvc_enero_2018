@@ -5,7 +5,7 @@ import model.Centro;
 public class MainQuestions {
 	
 	private Questions actualQD;
-	private int actual;
+	private int actual; //Se utiliza para guardar el estado de la pregunta actual
 	private final static int STARTQ = 0;
 	private final int STARTQD = 3;
 	
@@ -46,19 +46,21 @@ public class MainQuestions {
 	}
 	
 	private void setQuestionsForOp(int op) {
-		switch(op) {
-		case Centro.OP_ADD_ALUMNO:
-			actualQD = new QuestionsAddAlumno();
-			break;
-		case Centro.OP_EVALUAR:
-			actualQD = new QuestionsEvalua();
-			break;
-		case Centro.OP_MARCAR_ASISTENCIA:
-			actualQD = new QuestionsAsistencia();
-			break;
-		case Centro.OP_MOSTRAR_ALUMNO:
-			actualQD = new QuestionsBuscar();
-			break;
+		if ( this.getInternalStatus() == 0) {
+			switch(op) {
+			case Centro.OP_ADD_ALUMNO:
+				actualQD = new QuestionsAddAlumno();
+				break;
+			case Centro.OP_EVALUAR:
+				actualQD = new QuestionsEvalua();
+				break;
+			case Centro.OP_MARCAR_ASISTENCIA:
+				actualQD = new QuestionsAsistencia();
+				break;
+			case Centro.OP_MOSTRAR_ALUMNO:
+				actualQD = new QuestionsBuscar();
+				break;
+			}
 		}
 	}
 
@@ -70,6 +72,7 @@ public class MainQuestions {
 	private String getQuestionOp() {
 		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar )";
 	}
+	//Hola mostri
 	
 	public int getStatus() {
 		return actual;
