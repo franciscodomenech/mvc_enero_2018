@@ -13,9 +13,7 @@ public class StatusResponse {
 	public boolean isFinish() {
 		return finish;
 	}
-	public void setFinish(boolean finish) {
-		this.finish = finish;
-	}
+
 	public Object getResult() {
 		return result;
 	}
