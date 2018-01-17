@@ -30,11 +30,13 @@ public class QuestionsAsistencia extends Questions {
 			break;
 		case STEP_ASISTE:
 			if(response.equals("Si"))
-				sr.setResult(true);
+				asistencia.setAsistencia(true);
 			else if(response.equals("No"))
-				sr.setResult(true);
+				asistencia.setAsistencia(false);
 			else
+				//Comprueba si todo esta bien
 				sr.setIsok(false);
+			sr.setResult(asistencia);
 			break;
 		}
 		return sr;

@@ -10,6 +10,9 @@ public abstract class Questions implements IQuestions {
 
 	public Questions() {
 		questionsText = new ArrayList<String>();
+		//Inicializar todos los objetos questions
+		//Para inicializar las preguntas
+		init();
 	}
 	
 	@Override

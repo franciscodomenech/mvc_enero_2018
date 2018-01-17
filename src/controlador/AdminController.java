@@ -7,6 +7,7 @@ import vista.Consola;
 import vista.Consola.OnEvent;
 
 public class AdminController implements Consola.OnEvent {
+	//El modelo es el centro y vista es la vista
 	private Consola vista;
 	private Centro centro;
 	
@@ -26,12 +27,14 @@ public class AdminController implements Consola.OnEvent {
 		nextQuestion();
 	}
 	@Override
+	//Espera respuesta
 	public void onResponse(String response) {
 		String r = centro.processResponse(response);
 		if(r!=null)
 			vista.printResponse(r);
 		nextQuestion();
 	}
+	//Para dar paso a la siguiente pregunta
 	private void nextQuestion() {
 		vista.printQuestion(centro.nextQuestion());
 	}

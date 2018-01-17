@@ -3,6 +3,7 @@ package model.questions;
 import model.cursos.Alumno;
 
 public class QuestionsAddAlumno extends Questions {
+	//Extiende de questions
 	
 	private final int STEP_NOMBRE = 0;
 	private final int STEP_APELLIDOS = 1;
@@ -16,6 +17,7 @@ public class QuestionsAddAlumno extends Questions {
 		alumno = new Alumno();
 	}
 
+	//Las cuatro clase questions implementan este metodo
 	@Override
 	public void init() {
 		this.questionsText.add("Nombre:");
@@ -24,6 +26,7 @@ public class QuestionsAddAlumno extends Questions {
 		questionsText.add("F. Nacimiento");
 	}
 
+	//Segun me va dando las respuestas las va guardando
 	@Override
 	public StatusResponse processResponse(int step, String value) {
 		StatusResponse sr = new StatusResponse();
@@ -38,6 +41,7 @@ public class QuestionsAddAlumno extends Questions {
 		case STEP_NIF:
 			alumno.setNif(value);
 			break;
+			//Formato correcto de fecha
 		case STEP_FECHA:
 			sr.setIsok(alumno.setDateString(value));
 			sr.setResult(alumno);
