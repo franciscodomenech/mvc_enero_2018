@@ -25,11 +25,11 @@ public class QuestionsBorrar extends Questions {
 		case STEP_BORRAR:
 			if(response.equals("Si")) {
 				sr.setResult(nif);
-			}	
-			else if(response.equals("No")) {
+			}else if(response.equals("No")) {
 				sr.setResult(null);
-			}else
+			}else {
 				sr.setIsok(false);
+			}
 			break;
 		}
 		return sr;

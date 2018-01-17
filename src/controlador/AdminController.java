@@ -33,6 +33,7 @@ public class AdminController implements Consola.OnEvent {
 		nextQuestion();
 	}
 	private void nextQuestion() {
-		vista.printQuestion(centro.nextQuestion());
+		if(centro.isLogged())
+			vista.printQuestion(centro.nextQuestion());
 	}
 }

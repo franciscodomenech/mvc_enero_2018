@@ -21,8 +21,10 @@ public class Centro implements ICentro {
 	private MainQuestions questions;
 	
 	private Curso[] cursos;
-	
+	private Boolean logged;
+	//login (usuario) y si es correcto me lleva a una lista de articulos donde tengo buscar, eliminar y ver ficha articulo. los articulos tienen descripcion y precio y ruta de imagen
 	public Centro() {
+		logged=true;
 		cursos = new Curso[NUM_CURSOS];
 		for(int i=0;i<cursos.length;i++) {
 			Curso c = new Curso();
@@ -46,6 +48,11 @@ public class Centro implements ICentro {
 			StatusResponse sr = questions.processResponse(response);
 			if(sr.isFinish() && sr.isIsok() && questions.getStatus()>MainQuestions.SECOND_STEP) {
 				r = checkStResponse(sr);
+			} else if (!sr.isIsok()){
+				r = "Mal formato";
+			} else if (questions.getStatus()==MainQuestions.EXIT_STEP && ((Boolean)sr.getResult())) {
+				logged=false;
+				r="Hasta pronto";
 			}
 		//}
 		return r;
@@ -80,13 +87,18 @@ public class Centro implements ICentro {
 					} else {
 						r="No existe el alumno, no se ha podido eliminar";
 					}
-				}else if(!sr.isIsok()){
-					r = "Mal formato";
+				}else if(sr.getResult()==null) {
+					r="Borrar cancelado";
 				}		
 				break;
 			}
 		}
 		return r;
+	}
+
+	@Override
+	public Boolean isLogged() {
+		return logged;
 	}
 
 }

@@ -11,6 +11,7 @@ public class MainQuestions {
 	
 	public static final int FIRST_STEP = STARTQ+1;
 	public static final int SECOND_STEP = STARTQ+2;
+	public static final int EXIT_STEP = STARTQ;
 	
 	private int actualCurso;
 	private int actualOp;
@@ -30,6 +31,9 @@ public class MainQuestions {
 		case SECOND_STEP:
 			q = getQuestionOp();
 			break;
+		case EXIT_STEP:
+			q = getQuestionExit();
+			break;
 		default:
 			setQuestionsForOp(actualOp);
 			if(actualQD!=null)
@@ -39,7 +43,7 @@ public class MainQuestions {
 		}
 		if(q==null) {
 			actualQD = null;
-			actual = STARTQ;
+			actual = -1;
 			q = next();
 		}
 		return q;
@@ -76,6 +80,10 @@ public class MainQuestions {
 		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_BORRAR_ALUMNO+":Borrar )";
 	}
 	
+	private String getQuestionExit() {
+		return "¿Desea salir? (Si/No): ";
+	}
+	
 	public int getStatus() {
 		return actual;
 	}
@@ -100,6 +108,13 @@ public class MainQuestions {
 				sr.setResult(actualOp);
 				sr.setIsok(true);
 			}catch(NumberFormatException nfe) {}
+			break;
+		case EXIT_STEP:
+			try {
+				sr.setResult(response.equals("Si"));
+				sr.setIsok(true);
+			}catch(NumberFormatException nfe) {}
+			
 			break;
 		default:
 			if(actualQD!=null)
