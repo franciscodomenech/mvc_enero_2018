@@ -81,6 +81,12 @@ public class Curso implements ICurso {
 		
 			
 		}
+
+	@Override
+	public boolean Salir(String exit) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 		
 	}
 	

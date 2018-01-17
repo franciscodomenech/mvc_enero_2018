@@ -16,4 +16,6 @@ public interface ICurso {
 	public void setEvaluacion(InfoEvaluacion ev);
 	
 	public boolean borrarAlumno(String nif); //metodo que borra un alumno a traves de su nif
+	
+	public boolean Salir (String exit);
 }
