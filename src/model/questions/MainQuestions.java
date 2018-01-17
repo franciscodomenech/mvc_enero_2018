@@ -59,6 +59,8 @@ public class MainQuestions {
 				break;
 			case Centro.OP_MOSTRAR_ALUMNO:
 				actualQD = new QuestionsBuscar();
+			case Centro.OP_BORRAR_ALUMNO:
+				actualQD = new QuestionsBorrar();
 				break;
 			}
 		}
@@ -70,7 +72,7 @@ public class MainQuestions {
 	}
 
 	private String getQuestionOp() {
-		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar )";
+		return "Operacion("+Centro.OP_ADD_ALUMNO+":Matricula, "+Centro.OP_MARCAR_ASISTENCIA+":Asistencia, "+Centro.OP_EVALUAR+":Evaluar, "+Centro.OP_MOSTRAR_ALUMNO+":Buscar, "+Centro.OP_BORRAR_ALUMNO+":Borrar )" ;
 	}
 	//Hola mostri
 	
