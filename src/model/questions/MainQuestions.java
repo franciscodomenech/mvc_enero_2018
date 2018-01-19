@@ -12,6 +12,8 @@ public class MainQuestions {
 	public static final int FIRST_STEP = STARTQ+1;
 	public static final int SECOND_STEP = STARTQ+2;
 	
+	public static final int EXIT_STEP = STARTQ;
+	
 	private int actualCurso;
 	private int actualOp;
 	
@@ -30,6 +32,9 @@ public class MainQuestions {
 		case SECOND_STEP:
 			q = getQuestionOp();
 			break;
+		case EXIT_STEP:
+			q = getQuestionExit();
+			break;
 		default:
 			setQuestionsForOp(actualOp);
 			if(actualQD!=null)
@@ -39,7 +44,7 @@ public class MainQuestions {
 		}
 		if(q==null) {
 			actualQD = null;
-			actual = STARTQ;
+			actual = STARTQ-1;
 			q = next();
 		}
 		return q;
@@ -71,6 +76,11 @@ public class MainQuestions {
 		// TODO Auto-generated method stub
 		return "Elige Curso(0,"+Centro.NUM_CURSOS+"):";
 	}
+	
+	private String getQuestionExit() {
+		return "Desea Salir (Si/No)";
+	}
+	
 
 	private String getQuestionOp() {
 
@@ -92,13 +102,19 @@ public class MainQuestions {
 			try {
 				this.actualCurso = Integer.parseInt(response);
 				sr.setResult(actualCurso);
-				sr.setIsok(true);
+				sr.setIsok(actualCurso>=0 && actualCurso<Centro.NUM_CURSOS);
 			}catch(NumberFormatException nfe) {}
 			break;
 		case SECOND_STEP:
 			try {
 				this.actualOp = Integer.parseInt(response);
 				sr.setResult(actualOp);
+				sr.setIsok(actualOp>=0 && actualOp<=Centro.OP_DELETE_ALUMNO);
+			}catch(NumberFormatException nfe) {}
+			break;
+		case EXIT_STEP:
+			try {
+				sr.setResult(response.equals("Si"));
 				sr.setIsok(true);
 			}catch(NumberFormatException nfe) {}
 			break;
@@ -108,6 +124,10 @@ public class MainQuestions {
 			break;
 		}
 		return sr;
+	}
+	
+	public void reset() {
+		actual = STARTQ;
 	}
 	
 	public int getCurso() {
